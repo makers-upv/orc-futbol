@@ -69,7 +69,7 @@
         }
         console.log(diff);
         // TODO: send data here
-        const rot = 90 * Math.sin(Math.PI * diff.x / 1000);
+        const rot = 90 * Math.sin(Math.PI * diff.x / 1500);
         if ('transform' in robot.style) {
           robot.style.transform = 'rotate(' + rot + 'deg)';
         } else if ('webkitTransform' in robot.style) {
