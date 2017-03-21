@@ -19,11 +19,16 @@ main {
   text-align: center;
 }
 
-main .logo {
+main .robot {
   width: 80%;
   max-width: 250px;
   min-width: 200px;
   margin: 50px auto 20px;
+  transition: all .3s ease;
+}
+
+main .robot.stop {
+  transition: none;
 }
 
 main .btn {

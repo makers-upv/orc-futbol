@@ -19,110 +19,60 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <script>
       let controller = (sel, cb) => {
-      let joystick = document.querySelector(sel);
+        let joystick = document.querySelector(sel);
 
-      let start = false;
+        let start = false;
 
-      let begin = e => {
-        console.log(e);
-        joystick.classList.remove('stop');
-        let client = e.clientX ? e : e.touches[0];
-        start = { x: client.clientX, y: client.clientY }
-      };
-      joystick.addEventListener('mousedown', begin);
-      joystick.addEventListener('touchstart', begin);
-
-      let end = e => {
-        joystick.classList.add('stop');
-        joystick.setAttribute('style', '');
-        start = false;
-        cb({ x: 0, y: 0 });
-      };
-      document.addEventListener('mouseup', end);
-      document.addEventListener('touchend', end);
-
-      let control = e => {
-        if (start) {
+        let begin = e => {
+          joystick.classList.remove('stop');
           let client = e.clientX ? e : e.touches[0];
-          let diff = {
-            x: client.clientX - start.x,
-            y: start.y - client.clientY
-          };
-          let divisor = 4;
-          //joystick.style.marginLeft = diff.x;
-          joystick.setAttribute('style', 'margin-left: ' + (diff.x / divisor) + 'px; margin-top: ' + (-diff.y / divisor) + 'px;');
-          cb(diff);
-        }
+          start = { x: client.clientX, y: client.clientY }
+        };
+        joystick.addEventListener('mousedown', begin);
+        joystick.addEventListener('touchstart', begin);
+
+        let end = e => {
+          joystick.classList.add('stop');
+          joystick.setAttribute('style', '');
+          start = false;
+          cb({ x: 0, y: 0 });
+        };
+        document.addEventListener('mouseup', end);
+        document.addEventListener('touchend', end);
+
+        let control = e => {
+          if (start) {
+            let client = e.clientX ? e : e.touches[0];
+            let diff = {
+              x: client.clientX - start.x,
+              y: start.y - client.clientY
+            };
+            let divisor = 4;
+            //joystick.style.marginLeft = diff.x;
+            joystick.setAttribute('style', 'margin-left: ' + (diff.x / divisor) + 'px; margin-top: ' + (-diff.y / divisor) + 'px;');
+            cb(diff);
+          }
+        };
+        document.addEventListener('mousemove', control);
+        document.addEventListener('touchmove', control);
       };
-      document.addEventListener('mousemove', control);
-      document.addEventListener('touchmove', control);
-      }
+
+
+
+      const robot = document.querySelector('.robot');
 
       controller('.joystick', diff => {
-      document.querySelector('.coords').innerHTML = 'x: ' + diff.x + '<br>y: ' + diff.y;
-      console.log(diff);
-      });
-
-
-      // INIT
-      $(document).ready(function() {
-        $('select').material_select();
-        $('.modal').modal();
-      });
-
-      // Custom code
-      $('.reto').change(function(e) {
-        if (e.target.value === 'another') {
-          $('div.challenge').replaceWith('<div class="input-field">' +
-            '<input id="challenge" class="another" placeholder="Describe tu reto" data-length="50" name="challenge" required></div>'
-          );
-          $('.another').focus();
-          $('#challenge').characterCounter();
-        }
-      });
-      $('a.alguien').click(function(e){
-        e.preventDefault();
-        $(e.target).remove();
-        $('.reto-wrap > label').html('con el reto');
-        $('.reto-wrap').before('<label>Reto a</label><input placeholder="@twitter-handle" name="alguien" />');
-        $('.submit').html('Retarle!');
-        $('[name="alguien"]').focus();
-      });
-      $('form.challenge').submit(function(e){
-        e.preventDefault();
-        var someone = $('[name="alguien"]').val();
-        var reto = $('[name="challenge"]').val();
-        var tiempo = $('[name="time"]').val();
-        var dinero = $('[name="money"]').val();
-        var tweet = '';
-        if (someone) {
-          tweet += '@' + someone.replace(/^\@/, '') + ' te reto a ';
+        if (diff.x == 0 && diff.y == 0) {
+          robot.classList.remove('stop');
         } else {
-          tweet += 'Me reto a '
+          robot.classList.add('stop');
         }
-        tweet += reto + ' en ' + tiempo + ' o dono ' + dinero + ' a una ONG\n#retarme #superacion\n https://retar.me/';
-        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweet));
+        console.log(diff);
+        // TODO: send data here
+        const rot = 90 * Math.sin(Math.PI * diff.x / 1000);
+        console.log(rot);
+        robot.style.transform = 'rotate(' + rot + 'deg)';
       });
-
-      var setHandler = function(handler) {
-        if (!handler) return;
-        $('nav .login').html('<a class="modal-trigger" href="#logoutmodal">@' + handler +'</a>');
-        $('nav .login a').click(function(e){
-          e.preventDefault();
-          cookies({ twitter: undefined });
-          window.location.reload();
-        });
-      }
-
-      $('form.login').submit(function(e){
-        e.preventDefault();
-        var handler = $('form.login [name="twitter"]').val().replace(/^\s*@/, '');
-        cookies({ twitter: handler });
-        setHandler(handler);
-        $('#loginmodal').modal('close');
-      });
-
-      setHandler(cookies('twitter'));
     </script>
   </body>
 </html>
