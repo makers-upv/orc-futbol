@@ -69,14 +69,14 @@ $joystick: 100px;
   border-radius: 50%;
 
   // Joystick shadows
-  box-shadow:
-    -5px 5px 5px 5px rgba(255, 255, 255, .3) inset,
-    5px -5px 10px -10px rgba(0, 0, 0, .3) inset,
-    0 0 5px 5px rgba(0, 0, 0, .15) inset,
-    0 0 5px 10px rgba(255, 255, 255, .4) inset,
-    0 0 $joystick / 4 $joystick / 4 rgba(255, 255, 255, .2) inset,
-    0 0 0 $joystick rgba(255, 255, 255, .1) inset,
-    0 0 10px -3px #000;
+  // box-shadow:
+  //   -5px 5px 5px 5px rgba(255, 255, 255, .3) inset,
+  //   5px -5px 10px -10px rgba(0, 0, 0, .3) inset,
+  //   0 0 5px 5px rgba(0, 0, 0, .15) inset,
+  //   0 0 5px 10px rgba(255, 255, 255, .4) inset,
+  //   0 0 $joystick / 4 $joystick / 4 rgba(255, 255, 255, .2) inset,
+  //   0 0 0 $joystick rgba(255, 255, 255, .1) inset,
+  //   0 0 10px -3px #000;
 }
 .joystick.stop {
   transition: all .2s ease;
