@@ -64,11 +64,11 @@ $joystick: 100px;
   height: $joystick;
   top: calc(50% - #{$joystick / 2});
   left: calc(50% - #{$joystick / 2});
-  background: #ddd url('/images/noise.png');
-  background-size: cover;
+  background: #eee;
+  border: 2px solid #aaa;
   border-radius: 50%;
 
-  // Joystick shadows
+  // Joystick shadows; too slow for mobile rendering
   // box-shadow:
   //   -5px 5px 5px 5px rgba(255, 255, 255, .3) inset,
   //   5px -5px 10px -10px rgba(0, 0, 0, .3) inset,
