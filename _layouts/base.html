@@ -72,7 +72,7 @@
         const rot = 90 * Math.sin(Math.PI * diff.x / 1000);
         if ('transform' in robot.style) {
           robot.style.transform = 'rotate(' + rot + 'deg)';
-        } else if (robot.style.webkitTransform) {
+        } else if ('webkitTransform' in robot.style) {
           robot.style.webkitTransform = 'rotate(' + rot + 'deg)';
         }
       });
