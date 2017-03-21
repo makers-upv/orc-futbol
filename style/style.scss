@@ -54,17 +54,29 @@ footer {
   }
 }
 
+$joystick: 100px;
+
 .joystick {
   box-sizing: border-box;
   position: absolute;
   content: "";
-  width: 60px;
-  height: 60px;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  background: #eee;
-  border: 2px solid #aaa;
+  width: $joystick;
+  height: $joystick;
+  top: calc(50% - #{$joystick / 2});
+  left: calc(50% - #{$joystick / 2});
+  background: #ddd url('/images/noise.png');
+  background-size: cover;
   border-radius: 50%;
+
+  // Joystick shadows
+  box-shadow:
+    -5px 5px 5px 5px rgba(255, 255, 255, .3) inset,
+    5px -5px 10px -10px rgba(0, 0, 0, .3) inset,
+    0 0 5px 5px rgba(0, 0, 0, .15) inset,
+    0 0 5px 10px rgba(255, 255, 255, .4) inset,
+    0 0 $joystick / 4 $joystick / 4 rgba(255, 255, 255, .2) inset,
+    0 0 0 $joystick rgba(255, 255, 255, .1) inset,
+    0 0 10px -3px #000;
 }
 .joystick.stop {
   transition: all .2s ease;
