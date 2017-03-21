@@ -80,8 +80,7 @@
         console.log(diff);
         // TODO: send data here
         const rot = 90 * Math.sin(Math.PI * diff.x / 1000);
-        console.log(rot);
-        if (robot.style.transform) {
+        if ('transform' in robot.style) {
           robot.style.transform = 'rotate(' + rot + 'deg)';
         } else if (robot.style.webkitTransform) {
           robot.style.webkitTransform = 'rotate(' + rot + 'deg)';
