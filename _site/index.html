@@ -57,7 +57,7 @@
               x: client.clientX - start.x,
               y: start.y - client.clientY
             };
-            let divisor = 4;
+            let divisor = 2;
             //joystick.style.marginLeft = diff.x;
             joystick.setAttribute('style', 'margin-left: ' + (diff.x / divisor) + 'px; margin-top: ' + (-diff.y / divisor) + 'px;');
             cb(diff);
