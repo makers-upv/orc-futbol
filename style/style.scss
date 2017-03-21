@@ -19,10 +19,13 @@ main {
   text-align: center;
 }
 
-main .robot {
+main img {
   width: 80%;
   max-width: 250px;
   min-width: 200px;
+}
+
+main .robot {
   margin: 50px auto 20px;
   transition: all .3s ease;
 }
